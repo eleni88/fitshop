@@ -35,26 +35,26 @@ public class CategoryController {
     return "category";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String findCategoryById(@PathVariable("id") Integer id, ModelMap model){
-    Category category = categoryService.findCategoryById(id);
-    model.addAttribute("category", category);
-    return "";
-    }
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//    public String findCategoryById(@PathVariable("id") Integer id, ModelMap model){
+//    Category category = categoryService.findCategoryById(id);
+//    model.addAttribute("category", category);
+//    return "";
+//    }
     
     @RequestMapping(value = "/newCategory", method = RequestMethod.GET)
     public String insertCategory(ModelMap model){
     Category category = new Category();
     model.addAttribute("category", category);
-    return"";
+    return"newcategory";
     }
     
     @RequestMapping(value = "/newCategory", method = RequestMethod.POST)
     public String saveCategory(@Valid Category category, BindingResult result, ModelMap model){
     if(result.hasErrors()){
-    return"";
+    return"newcategory";
     }
     categoryService.saveCategory(category);
-    return"";
+    return"redirect:/category";
     }
 }

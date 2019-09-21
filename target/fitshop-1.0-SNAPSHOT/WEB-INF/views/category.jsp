@@ -1,19 +1,22 @@
 <%-- 
-    Document   : brands
-    Created on : Sep 21, 2019, 3:39:37 AM
+    Document   : products
+    Created on : Sep 18, 2019, 2:33:04 PM
     Author     : Eleni
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>category</title>
+        <title>Categories</title>
     </head>
     <body>
-        
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
@@ -24,9 +27,35 @@
     </div>
   </div>
 </nav>
-        
+       
         <h2>List of Categories</h2>
-        
-        ${category}
+      <table>
+            <thead>
+		
+			<th type="hidden" value="categoryId"></th>
+                        <th>categoryName</th>
+                       
+                         
+		
+                </thead>
+                <tbody>
+		<c:forEach items="${category}" var="category">
+                    
+			<tr>
+                            <td value="${category.categoryId}" type="hidden"/></td>
+                            <td><c:out value="${category.categoryName}"/></td>
+                            
+                       
+                       
+                       
+                        
+			
+			<td><a href="/fitshop/category/delete/${category.categoryId}">Delete</a></td>
+			</tr>
+		</c:forEach>
+                <a href="/fitshop/category/newCategory">New</a>
+                        </tbody>
+	</table>
+
     </body>
 </html>
