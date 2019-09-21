@@ -78,7 +78,6 @@ public class ProductController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteProduct(@PathVariable("id") Integer id, ModelMap model){
     productservice.deleteProductById(id);
-    
     return "redirect:/products";
     }
     

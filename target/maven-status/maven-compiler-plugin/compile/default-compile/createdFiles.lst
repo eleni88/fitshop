@@ -4,6 +4,7 @@ com\mycompany\fitshop\entities\AppUser.class
 com\mycompany\fitshop\dao\BrandDao.class
 com\mycompany\fitshop\config\FitshopAppConfig.class
 com\mycompany\fitshop\entities\PersistentLogins.class
+com\mycompany\fitshop\controller\AppController.class
 com\mycompany\fitshop\service\ProductService.class
 com\mycompany\fitshop\dao\AbstractDao.class
 com\mycompany\fitshop\service\BrandService.class

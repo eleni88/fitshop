@@ -35,27 +35,33 @@ public class BrandController {
     return"brands";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String findBrandById(@PathVariable("brandId") Integer brandId, ModelMap model){
-    Brand brand = brandService.findBrandById(brandId);
-    model.addAttribute("brands", brand);
-    return"";
-    }
+//    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+//    public String findBrandById(@PathVariable("brandId") Integer brandId, ModelMap model){
+//    Brand brand = brandService.findBrandById(brandId);
+//    model.addAttribute("brands", brand);
+//    return"";
+//    }
     
     @RequestMapping(value = "/newBrand", method = RequestMethod.GET)
     public String insertBrand(ModelMap model){
     Brand brand = new Brand();
     model.addAttribute("brands", brand);
-    return"";
+    return"newbrand";
     }
     
     @RequestMapping(value = "/newBrand", method = RequestMethod.POST)
     public String saveBrand(@Valid Brand brand, BindingResult result, ModelMap model){
         if(result.hasErrors()){
-        return"";
+        return "newbrand";
         }
     brandService.saveBrand(brand);
-    return"";
+    return "redirect:/brands";
     }
     
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteBrand(@PathVariable("id") Integer id, ModelMap model){
+    brandService.deleteBrandById(id);
+    
+    return "redirect:/brands";
+    }   
 }

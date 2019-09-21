@@ -45,8 +45,8 @@ public class Brand implements Serializable {
     @Size(max = 50)
     @Column(name = "brand_name", length = 50)
     private String brandName;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> productList;
+    @OneToMany(cascade = CascadeType.ALL , mappedBy="brand")//, fetch = FetchType.LAZY)
+    private List<Product> products;
 
     public Brand() {
     }
@@ -54,6 +54,12 @@ public class Brand implements Serializable {
     public Brand(Integer brandId, String brandName) {
         this.brandId = brandId;
         this.brandName = brandName;
+    }
+
+    public Brand(Integer brandId, String brandName, List<Product> products) {
+        this.brandId = brandId;
+        this.brandName = brandName;
+        this.products = products;
     }
     
     
@@ -80,11 +86,11 @@ public class Brand implements Serializable {
 
     @XmlTransient
     public List<Product> getProductList() {
-        return productList;
+        return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductList(List<Product> products) {
+        this.products = products;
     }
 
     @Override
@@ -107,15 +113,17 @@ public class Brand implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "com.mycompany.fitshop.entities.Brand[ brandId=" + brandId + " ]";
-//    }
-
     @Override
     public String toString() {
-        return "Brand{" + "brandId=" + brandId + ", brandName=" + brandName + '}';
+        return "com.mycompany.fitshop.entities.Brand[ brandId=" + brandId + " ]";
     }
+
+//    @Override
+//    public String toString() {
+//        return "Brand{" + "brandId=" + brandId + ", brandName=" + brandName + '}';
+//    }
+
+  
     
     
     

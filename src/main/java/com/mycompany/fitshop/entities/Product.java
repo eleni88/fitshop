@@ -63,12 +63,12 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "productId", fetch = FetchType.LAZY)
     private List<Sales> salesList;
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "brand_id") //, referencedColumnName = "brand_id")
+    @ManyToOne (optional = false)
+    @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
     private Brand brand;
    
     @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id") //, referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
     public Product() {
@@ -196,16 +196,6 @@ public class Product implements Serializable {
         }
         return true;
     }
-
-//    @Override
-//    public String toString() {
-//        return "com.mycompany.fitshop.entities.Product[ productId=" + productId + " ]";
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Product{" + "productId=" + productId + ", productName=" + productName + ", description=" + description + ", imageUrl=" + imageUrl + ", price=" + price + category + '}';
-//    }
 
     @Override
     public String toString() {
