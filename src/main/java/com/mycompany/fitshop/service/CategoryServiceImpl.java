@@ -7,6 +7,7 @@ package com.mycompany.fitshop.service;
 
 import com.mycompany.fitshop.dao.CategoryDao;
 import com.mycompany.fitshop.entities.Category;
+import com.mycompany.fitshop.entities.Product;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategoryById(int id) {
         dao.deleteCategoryById(id);
+    }
+    
+    @Override
+    public List<Product> findProductsByCategory(Category category){
+    return dao.findProductsByCategory(category);
     }
     
 }

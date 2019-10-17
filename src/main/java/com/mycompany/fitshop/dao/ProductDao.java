@@ -19,6 +19,6 @@ public interface ProductDao {
     public void saveProduct(Product Product);
     public void deleteProductById(int id);
     public void updateProduct(Product product);
-    public List<Product> findProductsByCategory(Category category);
+    
     
 }

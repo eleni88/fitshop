@@ -6,6 +6,7 @@
 package com.mycompany.fitshop.dao;
 
 import com.mycompany.fitshop.entities.Category;
+import com.mycompany.fitshop.entities.Product;
 import java.util.List;
 
 /**
@@ -17,5 +18,6 @@ public interface CategoryDao {
     public Category findCategoryById(int id);
     public void saveCategory(Category category);
     public void deleteCategoryById(int id);
+    public List<Product> findProductsByCategory(Category category);
    ;
 }

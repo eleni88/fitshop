@@ -6,7 +6,9 @@
 package com.mycompany.fitshop.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -23,6 +28,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 /**
  *
@@ -47,7 +54,7 @@ public class AppUser implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(nullable = false)
-    private Long id;
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -76,15 +83,23 @@ public class AppUser implements Serializable {
     private String email;
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Sales> salesList;
+    
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "app_user_user_profile", 
+             joinColumns = { @JoinColumn(name = "user_id") }, 
+             inverseJoinColumns = { @JoinColumn(name = "user_profile_id") })
+    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+    
 
     public AppUser() {
     }
 
-    public AppUser(Long id) {
+    public AppUser(Integer id) {
         this.id = id;
     }
 
-    public AppUser(Long id, String ssoId, String password, String firstName, String lastName, String email) {
+    public AppUser(Integer id, String ssoId, String password, String firstName, String lastName, String email) {
         this.id = id;
         this.ssoId = ssoId;
         this.password = password;
@@ -93,11 +108,21 @@ public class AppUser implements Serializable {
         this.email = email;
     }
 
-    public Long getId() {
+    public Set<UserProfile> getUserProfiles() {
+        return userProfiles;
+    }
+
+    public void setUserProfiles(Set<UserProfile> userProfiles) {
+        this.userProfiles = userProfiles;
+    }
+    
+    
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -150,29 +175,117 @@ public class AppUser implements Serializable {
         this.salesList = salesList;
     }
 
+//    @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        hash = 37 * hash + this.id;
+//        hash = 37 * hash + Objects.hashCode(this.ssoId);
+//        hash = 37 * hash + Objects.hashCode(this.password);
+//        hash = 37 * hash + Objects.hashCode(this.firstName);
+//        hash = 37 * hash + Objects.hashCode(this.lastName);
+//        hash = 37 * hash + Objects.hashCode(this.email);
+//        hash = 37 * hash + Objects.hashCode(this.salesList);
+//        hash = 37 * hash + Objects.hashCode(this.userProfiles);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final AppUser other = (AppUser) obj;
+//        if (this.id != other.id) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.ssoId, other.ssoId)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.password, other.password)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.firstName, other.firstName)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.lastName, other.lastName)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.email, other.email)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.salesList, other.salesList)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.userProfiles, other.userProfiles)) {
+//            return false;
+//        }
+//        return true;
+//    }
+    
+    
+
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (id != null ? id.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof AppUser)) {
+//            return false;
+//        }
+//        AppUser other = (AppUser) object;
+//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+//            return false;
+//        }
+//        return true;
+//    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
+        return result;
     }
-
+ 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AppUser)) {
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-        }
-        AppUser other = (AppUser) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (!(obj instanceof AppUser))
             return false;
-        }
+        AppUser other = (AppUser) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (ssoId == null) {
+            if (other.ssoId != null)
+                return false;
+        } else if (!ssoId.equals(other.ssoId))
+            return false;
         return true;
     }
+    
 
     @Override
     public String toString() {
-        return "com.mycompany.fitshop.entities.AppUser[ id=" + id + " ]";
+        return "AppUser{" + "id=" + id + ", ssoId=" + ssoId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + '}';
     }
-    
+ 
 }

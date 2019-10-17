@@ -6,6 +6,7 @@
 package com.mycompany.fitshop.service;
 
 import com.mycompany.fitshop.entities.Category;
+import com.mycompany.fitshop.entities.Product;
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public interface CategoryService {
    Category findCategoryById(int id);
    void saveCategory(Category category);
    void deleteCategoryById(int id);
+   List<Product> findProductsByCategory(Category category);
 }

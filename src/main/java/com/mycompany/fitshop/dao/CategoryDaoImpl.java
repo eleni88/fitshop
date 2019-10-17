@@ -6,9 +6,11 @@
 package com.mycompany.fitshop.dao;
 
 import com.mycompany.fitshop.entities.Category;
+import com.mycompany.fitshop.entities.Product;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -40,6 +42,12 @@ public class CategoryDaoImpl extends AbstractDao<Integer, Category> implements C
      delete(findCategoryById(id));
      }
      
+      @Override
+    public List<Product> findProductsByCategory(Category category) {
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("category", category));
+        return criteria.list();
+    }
    
     
 }

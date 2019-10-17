@@ -56,11 +56,6 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
        }
     }
 
-    @Override
-    public List<Product> findProductsByCategory(Category category) {
-        Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("category", category));
-        return criteria.list();
-    }
+   
     
 }

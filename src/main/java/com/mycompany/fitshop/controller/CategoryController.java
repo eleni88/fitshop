@@ -6,6 +6,7 @@
 package com.mycompany.fitshop.controller;
 
 import com.mycompany.fitshop.entities.Category;
+import com.mycompany.fitshop.entities.Product;
 import com.mycompany.fitshop.service.CategoryService;
 import java.util.List;
 import javax.validation.Valid;
@@ -62,5 +63,12 @@ public class CategoryController {
     public String deleteCategory(@PathVariable("id") Integer id, ModelMap model){
     categoryService.deleteCategoryById(id);
     return "redirect:/category";
+    }
+    
+    @RequestMapping(value = "/products/{category}", method = RequestMethod.GET)
+    public String findProductsByCategory(@PathVariable("category") Category category, ModelMap model){
+        List<Product>productsByCategory = categoryService.findProductsByCategory(category);
+        model.addAttribute("productsByCategory", productsByCategory);
+    return"productsbycategory";
     }
 }
