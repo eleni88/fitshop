@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 @Repository("userProfileDao")
 public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>implements UserProfileDao{
     
-    public UserProfile findById(int id) {
+    public UserProfile findById(Integer id) {
         return getByKey(id);
     }
  

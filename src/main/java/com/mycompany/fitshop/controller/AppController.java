@@ -183,9 +183,13 @@ public class AppController {
  
         userService.updateUser(user);
  
+         
+        
         model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " updated successfully");
         model.addAttribute("loggedinuser", getPrincipal());
         return "registrationsuccess";
+        
+       
     }
  
      

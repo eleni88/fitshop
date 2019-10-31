@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserDao {
     
-    AppUser findById(int id);
+    AppUser findById(Integer id);
      
     AppUser findBySSO(String sso);
      

@@ -5,7 +5,7 @@
  */
 package com.mycompany.fitshop.util;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 /**
  *
@@ -18,5 +18,7 @@ public class QuickPasswordEncodingGenerator {
 //            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //            System.out.println(passwordEncoder.encode(password) + "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 //    }
+    
+   
     
 }

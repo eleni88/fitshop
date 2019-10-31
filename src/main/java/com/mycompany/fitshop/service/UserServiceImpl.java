@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private PasswordEncoder passwordEncoder;
      
-    public AppUser findById(int id) {
+    public AppUser findById(Integer id) {
         return dao.findById(id);
     }
  
@@ -48,7 +48,9 @@ public class UserServiceImpl implements UserService{
      * It will be updated in db once transaction ends. 
      */
     public void updateUser(AppUser user) {
+        //user = dao.findById(user.getId());
         AppUser entity = dao.findById(user.getId());
+        
         if(entity!=null){
             entity.setSsoId(user.getSsoId());
             if(!user.getPassword().equals(entity.getPassword())){
@@ -58,6 +60,8 @@ public class UserServiceImpl implements UserService{
             entity.setLastName(user.getLastName());
             entity.setEmail(user.getEmail());
             entity.setUserProfiles(user.getUserProfiles());
+            
+            
         }
     }
  

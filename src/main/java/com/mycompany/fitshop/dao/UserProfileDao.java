@@ -18,6 +18,6 @@ public interface UserProfileDao {
      
     UserProfile findByType(String type);
      
-    UserProfile findById(int id);
+    UserProfile findById(Integer id);
     
 }
