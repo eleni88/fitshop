@@ -32,6 +32,9 @@
         <h2>Let's Work out!</h2>
         <h2>No pain No gain!</h2>
         
-        <a href="/fitshop/list" value="list of users">list of users</a>
+                
+                <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/list" value="list of users">list of users</a></td></sec:authorize>
+        
+        
     </body>
 </html>

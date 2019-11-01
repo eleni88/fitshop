@@ -52,12 +52,17 @@
                         
                             <td><c:out value="${product.imageUrl}"/></td>
                        
-                       
-                       
-                        
+                          
+                            
+                           
+                 <sec:authorize access="hasRole('user')"><td><a href="/fitshop/products/addToCart/${product.productId}">Add to cart</a></td></sec:authorize>        
                 <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/products/update/${product.productId}">Edit</a></td></sec:authorize>
                 <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/products/delete/${product.productId}">Delete</a></td></sec:authorize>
-			</tr>
+                  
+                <td><a href="/fitshop/products/buy/${product.productId}">Buy</a></td>
+                            
+                
+                            </tr>
 		</c:forEach>
                         <sec:authorize access="hasRole('admin')"><a href="/fitshop/products/new">New</a></sec:authorize>
                         </tbody>

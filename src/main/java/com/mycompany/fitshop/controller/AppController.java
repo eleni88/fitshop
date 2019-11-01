@@ -88,8 +88,7 @@ public class AppController {
     }
     }
     
-    
-    
+
      /**
      * This method will list all existing users.
      */

@@ -16,6 +16,7 @@ public enum UserProfileType implements Serializable{
      USER("user"),
      ADMIN("admin");
     
+    
      String userProfileType;
      
     private UserProfileType(String userProfileType){
