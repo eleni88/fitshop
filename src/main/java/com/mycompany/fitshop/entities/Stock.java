@@ -97,7 +97,9 @@ public class Stock implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.fitshop.entities.Stock[ stockId=" + stockId + " ]";
+        return "Stock{" + "stockId=" + stockId + ", quantity=" + quantity + ", productId=" + productId + '}';
     }
+
+   
     
 }

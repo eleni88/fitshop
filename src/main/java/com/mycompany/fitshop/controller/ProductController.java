@@ -8,9 +8,11 @@ package com.mycompany.fitshop.controller;
 import com.mycompany.fitshop.entities.Brand;
 import com.mycompany.fitshop.entities.Category;
 import com.mycompany.fitshop.entities.Product;
+import com.mycompany.fitshop.entities.Stock;
 import com.mycompany.fitshop.service.BrandService;
 import com.mycompany.fitshop.service.CategoryService;
 import com.mycompany.fitshop.service.ProductService;
+import com.mycompany.fitshop.service.StockService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +41,13 @@ public class ProductController {
     @Autowired
     BrandService brandService;
     
+    @Autowired 
+    StockService stockService;
  
     @RequestMapping(method = RequestMethod.GET)
     public String findAllProducts(ModelMap model){
-    List<Product>products = productservice.findAllProducts();
+    List<Product> products = productservice.findAllProducts();
+
     model.addAttribute("products", products);
     
     return "products";
@@ -57,7 +62,7 @@ public class ProductController {
           
             model.addAttribute("category", category);
             model.addAttribute("brands", brands);
-             model.addAttribute("products", product);
+            model.addAttribute("products", product);
             return "newproduct";
     }
     
@@ -114,5 +119,7 @@ public class ProductController {
     return "redirect:/products";
         
     }
-  
+    
+    
+ 
 }
