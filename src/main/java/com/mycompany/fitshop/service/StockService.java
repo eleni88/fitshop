@@ -5,6 +5,7 @@
  */
 package com.mycompany.fitshop.service;
 
+import com.mycompany.fitshop.entities.Product;
 import com.mycompany.fitshop.entities.Stock;
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface StockService {
     Stock findStockByProductId(Integer id);
     void saveStock(Stock stock);
     void updateStock(Stock stock);
+   
+    void saveProductIntoStock( Integer quantity, Product product);
 }

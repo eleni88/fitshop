@@ -8,6 +8,7 @@ package com.mycompany.fitshop.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,8 +50,8 @@ public class Product implements Serializable {
     @Size(max = 50)
     @Column(name = "product_name", length = 50)
     private String productName;
-    @Size(max = 150)
-    @Column(length = 150)
+    @Size(max = 300)
+    @Column(length = 300)
     private String description;
     @Size(max = 200)
     @Column(name = "image_url", length = 200)
@@ -58,9 +59,9 @@ public class Product implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(precision = 22, scale = 0)
     private Double price;
-    @OneToMany(mappedBy = "productId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL) // fetch = FetchType.LAZY)
     private List<Stock> stockList;
-    @OneToMany(mappedBy = "productId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL) // fetch = FetchType.LAZY)
     private List<Sales> salesList;
     
     @ManyToOne (optional = false)

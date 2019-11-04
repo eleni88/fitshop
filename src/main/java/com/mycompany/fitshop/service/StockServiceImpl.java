@@ -5,7 +5,9 @@
  */
 package com.mycompany.fitshop.service;
 
+import com.mycompany.fitshop.dao.ProductDao;
 import com.mycompany.fitshop.dao.StockDao;
+import com.mycompany.fitshop.entities.Product;
 import com.mycompany.fitshop.entities.Stock;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -22,6 +24,7 @@ public class StockServiceImpl implements StockService {
 
     @Autowired
     private StockDao dao;
+    
     
     @Override
     public List<Stock> findStock() {
@@ -46,6 +49,12 @@ public class StockServiceImpl implements StockService {
     @Override
     public void updateStock(Stock stock) {
         dao.updateStock(stock);
+    }
+    
+    
+    public void saveProductIntoStock( Integer quantity, Product product){
+        
+    dao.saveStock(new Stock(quantity, product));
     }
     
 }

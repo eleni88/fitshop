@@ -70,8 +70,14 @@
             </c:forEach>
             </select>
             
+             <label for="quantity" path="quantity">quantity </label>
+            <input path="quantity" name="quantity" id="quantity" type="number" min="1"/>
+             <errors path="quantity" class="error"></errors>
+            
             <button type="submit" value="new">Add</button>
         </form:form>
+            
+           
         
     </body>
 </html>

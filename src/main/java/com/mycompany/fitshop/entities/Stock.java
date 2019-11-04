@@ -41,15 +41,25 @@ public class Stock implements Serializable {
     private Integer stockId;
     private Integer quantity;
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false) //fetch = FetchType.LAZY)
     private Product productId;
 
     public Stock() {
     }
 
-    public Stock(Integer stockId) {
-        this.stockId = stockId;
+    
+    public Stock(Integer quantity, Product productId) {
+        this.quantity = quantity;
+        this.productId = productId;
     }
+
+    public Stock(Integer stockId, Integer quantity, Product productId) {
+        this.stockId = stockId;
+        this.quantity = quantity;
+        this.productId = productId;
+    }
+    
+    
 
     public Integer getStockId() {
         return stockId;

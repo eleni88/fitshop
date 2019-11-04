@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,9 +58,11 @@ public class ProductController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String insertProduct(ModelMap model){
     Product product = new Product();
+    
     List<Category> category = categoryService.findAllCategories();
     List<Brand> brands = brandService.findAllBrands();
-          
+    
+    
             model.addAttribute("category", category);
             model.addAttribute("brands", brands);
             model.addAttribute("products", product);
@@ -67,7 +70,7 @@ public class ProductController {
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String saveProduct(@RequestParam("categoryId") Integer categoryId, @RequestParam(value = "brandId") Integer brandId, @Valid Product product, BindingResult result, ModelMap model){
+    public String saveProduct(@RequestParam("categoryId") Integer categoryId, @RequestParam(value = "brandId") Integer brandId, @RequestParam(value = "quantity") Integer quantity, @Valid Product product, BindingResult result, ModelMap model){
 //    if(result.hasErrors()){
 //    return "redirect:/products/new";
 //    }
@@ -75,7 +78,11 @@ public class ProductController {
     product.setCategoryId(category);
     Brand brand = brandService.findBrandById(brandId);
     product.setBrandId(brand);
+    
     productservice.saveProduct(product);
+    
+    stockService.saveProductIntoStock(quantity, product);
+            
     
     return "redirect:/products" ;
     }

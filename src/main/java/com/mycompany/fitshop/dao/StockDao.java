@@ -23,4 +23,6 @@ public interface StockDao {
     public void saveStock(Stock stock);
 
     public void updateStock(Stock stock);
+    
+    
 }
