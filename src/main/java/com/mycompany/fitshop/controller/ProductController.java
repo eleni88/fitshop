@@ -120,6 +120,14 @@ public class ProductController {
         
     }
     
+    @RequestMapping(value = "/buy/{id}", method = RequestMethod.GET)
+    public String buyForm(@PathVariable("id") Integer id, ModelMap model){
+        Product product = productservice.findById(id);
+    Stock stock = stockService.findStockByProductId(id);
+    stock.getQuantity();
     
+    model.addAttribute("products", product);
+    return "buy";
+    }
  
 }

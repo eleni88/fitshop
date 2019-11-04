@@ -1,6 +1,6 @@
 <%-- 
-    Document   : products
-    Created on : Sep 18, 2019, 2:33:04 PM
+    Document   : buy
+    Created on : Nov 4, 2019, 2:38:19 AM
     Author     : Eleni
 --%>
 
@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Products</title>
+        <title>Buy</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,8 +28,7 @@
                 </div>
             </div>
         </nav>
-
-        <h2>List of Products</h2>
+        
         <table>
             <thead>
 
@@ -38,33 +37,30 @@
             <th>description</th>
             <th>price</th>
             <th>imageUrl</th>
-            <th></th>
+            <th>quantity</th><th></th>
 
 
         </thead>
         <tbody>
-            <c:forEach items="${products}" var="product">
+           
 
                 <tr>
-                    <td value="${product.productId}" type="hidden"/></td>
-                    <td><c:out value="${product.productName}"/></td>
-                    <td><c:out value="${product.description}"/></td>
-                    <td><c:out value="${product.price}"/></td>
-                    <td><c:out value="${product.imageUrl}"/></td>
-                   
+                    <td value="${products.productId}" type="hidden"/></td>
+                    <td><c:out value="${products.productName}"/></td>
+                    <td><c:out value="${products.description}"/></td>
+                    <td><c:out value="${products.price}"/></td>
+                    <td><c:out value="${products.imageUrl}"/></td>
+                    <td><input type="number" name="quantity" min="1" value="1">
 
-                    <sec:authorize access="hasRole('user')"><td><a href="/fitshop/products/addToCart/${product.productId}">Add to cart</a></td></sec:authorize>        
-                    <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/products/update/${product.productId}">Edit</a></td></sec:authorize>
-                    <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/products/delete/${product.productId}">Delete</a></td></sec:authorize>
+                    </td>
 
-                        <td><a href="/fitshop/products/buy/${product.productId}">Buy</a></td>
+                        <td><a href="/fitshop/products/buy/${products.productId}">Buy</a></td>
 
 
                 </tr>
-            </c:forEach>
-            <sec:authorize access="hasRole('admin')"><a href="/fitshop/products/new">New</a></sec:authorize>
+           
     </tbody>
 </table>
-
-</body>
+        
+    </body>
 </html>

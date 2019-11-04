@@ -38,7 +38,7 @@
             <th>description</th>
             <th>price</th>
             <th>imageUrl</th>
-            <th>quantity</th><th></th>
+            <th></th>
 
 
         </thead>
@@ -51,14 +51,7 @@
                     <td><c:out value="${product.description}"/></td>
                     <td><c:out value="${product.price}"/></td>
                     <td><c:out value="${product.imageUrl}"/></td>
-                    <td><input type="number" name="quantity" min="1" value="1">
-
-                    </td>
-
-
-
-
-
+                   
 
                     <sec:authorize access="hasRole('user')"><td><a href="/fitshop/products/addToCart/${product.productId}">Add to cart</a></td></sec:authorize>        
                     <sec:authorize access="hasRole('admin')"><td><a href="/fitshop/products/update/${product.productId}">Edit</a></td></sec:authorize>
